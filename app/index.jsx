@@ -1,9 +1,12 @@
 import { Text, View } from "react-native";
-
+import { FirstPage } from "./Componets/FirstPage";
 export default function Index() {
   return (
-    <View className="flex flex-row bg-slate-500 text-gray-950 w-4" >
-      <Text>Edit app/index.tsx to edit this screen.</Text>
+    <View>
+      <Text>Edit app/index.tsx to edit this screen. sdasd dasdsadasa 12s</Text>
+      <FirstPage></FirstPage>
+
     </View>
+    
   );
 }
