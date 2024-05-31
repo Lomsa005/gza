@@ -1,13 +1,32 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Alert } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Alert, Image } from 'react-native';
+import { styles } from "./styles";
+import logo from '../../assets/images/FirstImage/justice.png'; // Ensure the path is correct
 
 const CustomButton = ({ onPress, title }) => {
     return (
-        <TouchableOpacity onPress={onPress} >
-            <View style={styles.button}>
-                <Text style={{ color: 'white', textAlign: 'center' }}>{title}</Text>
-            </View>
-        </TouchableOpacity>
+        <View style={styles.btnOuter}>
+            <TouchableOpacity onPress={onPress} style={styles.button}>
+                <Text style={styles.buttonText}>{title}</Text>
+            </TouchableOpacity>
+        </View>
+    );
+};
+
+const CustomTitle = () => {
+    return (
+        <Text style={styles.title}>
+            <Text style={styles.span}>
+                გზამკვლევი{'\n'} 
+            </Text>    
+            სასჯელმოხდილ{'\n'}პირთათვის
+        </Text>
+    );
+};
+
+const CustomImage = () => {
+    return (
+        <Image source={logo} style={styles.image} />
     );
 };
 
@@ -17,32 +36,20 @@ export const FirstPage = () => {
     };
 
     return (
-        <View style={styles.cont}>
-            <Text>Hello World</Text>
-            <CustomButton onPress={handlePress} style={styles.btn} title="Press Me" />
+        <View style={styles.container}>
+            <View style={styles.item1}>
+                <View style={styles.innerItem1}>
+                    <CustomImage />
+                </View>
+            </View>
+            <View style={styles.container}>
+                <CustomTitle />
+                <CustomButton onPress={handlePress} title="შემდეგი" />
+            </View>
         </View>
     );
 };
 
-const styles = StyleSheet.create({
-    button: {
-        backgroundColor: 'blue',
-        paddingVertical: 12,
-        paddingHorizontal: 24,
-        borderRadius: 8,
-        
-    }, 
-    btn: {
-        flex: 1,
-        justifyContent: 'flex-end',
-        alignItems: 'center',
-        paddingHorizontal: 20,
-        paddingBottom: 20,
-    },
-    cont: {
-        backgroundColor: "red", 
-        height: "100%"
-    }
-});
+
 
 export default FirstPage;
