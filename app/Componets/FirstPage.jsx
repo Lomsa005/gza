@@ -3,16 +3,18 @@ import { View, Text, TouchableOpacity, StyleSheet, Alert, Image } from 'react-na
 import { styles } from "./styles";
 import * as Font from 'expo-font';
 import logo from '../../assets/images/FirstImage/justice.png';
-import AppLoading from 'expo-app-loading';
+import * as SplashScreen from 'expo-splash-screen'; 
 import up from '../../assets/images/FirstImage/up.png';
 import left from '../../assets/images/FirstImage/left.png';
 
-const fetchFonts = () => {
-    return Font.loadAsync({
-      'BPG-Nino-Mtavruli-Normal': require('../../assets/fonts/bpg_nino_mtavruli_normal.otf'),
+// Prevent the splash screen from auto-hiding
+SplashScreen.preventAutoHideAsync();
+
+const fetchFonts = async () => {
+    await Font.loadAsync({
+        'BPG-Nino-Mtavruli-Normal': require('../../assets/fonts/bpg_nino_mtavruli_normal.otf'),
     });
 };
-
 
 const CustomButton = ({ onPress, title }) => {
     return (
@@ -38,14 +40,24 @@ const CustomTitle = () => {
 export const FirstPage = () => {
     const [fontLoaded, setFontLoaded] = useState(false);
 
+    useEffect(() => {
+        const loadResources = async () => {
+            try {
+                await fetchFonts();
+                setFontLoaded(true);
+                await SplashScreen.hideAsync();
+            } catch (e) {
+                console.warn(e);
+            }
+        };
+
+        loadResources();
+    }, []);
+
     if (!fontLoaded) {
-      return (
-        <AppLoading
-          startAsync={fetchFonts}
-          onFinish={() => setFontLoaded(true)}
-        />
-      );
+        return null;
     }
+
     const handlePress = () => {
         Alert.alert('Button pressed!');
     };
@@ -70,7 +82,5 @@ export const FirstPage = () => {
         </>
     );
 };
-
-
 
 export default FirstPage;
