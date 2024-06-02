@@ -159,4 +159,48 @@ export const styles = StyleSheet.create({
         bottom: "65%",
         zIndex: 0
     },
+
+
+    // Law Page
+
+    firstCont: {
+        flex: 0,
+        justifyContent: 'space-between',
+        alignItems: "center",
+        flexDirection: 'row',
+        width: "90%",
+        height: 59,
+        backgroundColor: '#D4D4D4',
+        borderRadius: 9,
+        margin: 20
+
+    },
+    lawTitle: {
+        width: "70%",
+        height: "auto"
+   },
+    back: {
+        width: 36,
+        height: 36
+    },
+    fav: {
+        width: 30,
+        height: 30,
+        marginRight: 5
+    },
+    SecondCont: {
+        flex: 0,
+        justifyContent: 'space-between',
+        alignItems: "center",
+        width: "90%",
+        height: "auto",
+        backgroundColor: '#D4D4D4',
+        borderRadius: 9,
+        padding: 20,
+        margin: 20,
+        marginTop: 0
+    },
+    lawText: {
+
+    }
 });
