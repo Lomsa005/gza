@@ -1,4 +1,3 @@
-// styles.js
 import { StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
@@ -16,13 +15,24 @@ export const styles = StyleSheet.create({
         alignItems: 'center',
         zIndex: 5
     },
+    contentItem: {
+        borderWidth: 3,
+        borderColor: 'transparent',
+        borderRadius: 10,
+        padding: 3,
+    },
+    selectedBorder1: {
+        borderColor: '#FBA826',
+    },
+    selectedBorder2: {
+        borderColor: '#AED5EA',
+    },
     innerItem1: {
         flex: 1,
         justifyContent: 'center',
         alignItems: "flex-end"
     },
     button: {   
-        backgroundColor: '#FBA826',
         padding: 10,
         borderRadius: 5,
         width: 351,
@@ -42,7 +52,7 @@ export const styles = StyleSheet.create({
         width: '50%',
         justifyContent: 'center',
         alignItems: 'flex-end',
-        zIndex: 10,
+        zIndex: 1,
     },
     image: {
         borderRadius: 5,
@@ -87,13 +97,66 @@ export const styles = StyleSheet.create({
         position: "absolute",
         width: 68,
         height: 212,
-        left: 0
+        left: 0,
+        zIndex: 0
     },
     leftCont: {
         flex: 0,
         justifyContent: 'center',
         alignItems: 'flex-start',
         bottom: "35%",
+        zIndex: 0
+    },
+    contentContainer: {
+        width: "100%",
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
         zIndex: 1
-    }
+    },
+    content1: {
+        width: 177,
+        height: 143,
+        backgroundColor: "#FBA826",
+        flex: 0,
+        justifyContent: 'center',
+        alignItems: 'center',
+        zIndex: 1,
+        borderRadius: 10
+    }, 
+    
+    content2: {
+        width: 177,
+        height: 143,
+        backgroundColor: "#AED5EA",
+        flex: 0,
+        justifyContent: 'center',
+        alignItems: 'center',
+        zIndex: 1,
+        borderRadius: 10
+    },
+    contentText: {
+        fontSize: 14,
+        fontWeight: 600,
+        width: 140
+    },
+    margin: {
+        width: 10,
+        height: 143
+    },
+    leftP: {
+        position: "absolute",
+        width: 68,
+        height: 212,
+        left: 0,
+        zIndex: 0
+    },
+    leftContP: {
+        flex: 0,
+        justifyContent: 'center',
+        alignItems: 'flex-start',
+        bottom: "65%",
+        zIndex: 0
+    },
 });

@@ -1,23 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Alert, Image } from 'react-native';
+import { useNavigation } from '@react-navigation/native'; // 
 import { styles } from "./styles";
 import * as Font from 'expo-font';
 import logo from '../../assets/images/FirstImage/justice.png';
-import AppLoading from 'expo-app-loading';
+import * as SplashScreen from 'expo-splash-screen'; 
 import up from '../../assets/images/FirstImage/up.png';
 import left from '../../assets/images/FirstImage/left.png';
 
-const fetchFonts = () => {
-    return Font.loadAsync({
-      'BPG-Nino-Mtavruli-Normal': require('../../assets/fonts/bpg_nino_mtavruli_normal.otf'),
+
+SplashScreen.preventAutoHideAsync();
+
+const fetchFonts = async () => {
+    await Font.loadAsync({
+        'BPG-Nino-Mtavruli-Normal': require('../../assets/fonts/bpg_nino_mtavruli_normal.otf'),
     });
 };
-
 
 const CustomButton = ({ onPress, title }) => {
     return (
         <View style={styles.btnOuter}>
-            <TouchableOpacity onPress={onPress} style={styles.button}>
+            <TouchableOpacity onPress={onPress} style={[styles.button, {backgroundColor: "#FBA826"}]}>
                 <Text style={styles.buttonText}>{title}</Text>
             </TouchableOpacity>
         </View>
@@ -37,17 +40,28 @@ const CustomTitle = () => {
 
 export const FirstPage = () => {
     const [fontLoaded, setFontLoaded] = useState(false);
+    const navigation = useNavigation(); 
+
+    useEffect(() => {
+        const loadResources = async () => {
+            try {
+                await fetchFonts();
+                setFontLoaded(true);
+                await SplashScreen.hideAsync();
+            } catch (e) {
+                console.warn(e);
+            }
+        };
+
+        loadResources();
+    }, []);
 
     if (!fontLoaded) {
-      return (
-        <AppLoading
-          startAsync={fetchFonts}
-          onFinish={() => setFontLoaded(true)}
-        />
-      );
+        return null;
     }
+
     const handlePress = () => {
-        Alert.alert('Button pressed!');
+        navigation.navigate('SecondPage');
     };
 
     return (
@@ -70,7 +84,5 @@ export const FirstPage = () => {
         </>
     );
 };
-
-
 
 export default FirstPage;
